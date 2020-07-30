@@ -25,7 +25,6 @@ func Parse(r io.Reader) ([]Link, error) {
 		fmt.Println(err)
 	}
 	dfs(doc, "")
-	fmt.Println(res)
 	return nil, nil
 }
 
@@ -44,7 +43,7 @@ func dfs(n *html.Node, padding string) {
 		text = getText(n)
 		l := Link{
 			Href: val,
-			text: text,
+			Text: text,
 		}
 		res = append(res, l)
 	}
