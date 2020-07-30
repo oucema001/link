@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"io"
 	"io/ioutil"
-	"strings"
+	"log"
+	"net/http"
 
 	link "github.com/oucema001/link"
 )
@@ -31,15 +31,22 @@ var examp1 = `
 `
 
 func main() {
-	var ex io.Reader
 
-	ex = strings.NewReader(examp1)
-	l := link.Link{}
-	links, err := l.Parse(ex)
+	urlp := "https://www.calhoun.io"
+	content, err := http.Get(urlp)
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 	}
-	_ = links
+	defer content.Body.Close()
+
+	l, err := link.Parse(content.Body)
+	if err != nil {
+		log.Println(err)
+	}
+	for _, v := range l {
+		fmt.Printf("%s : %s \n", v.Href, v.Text)
+	}
+
 	//	fmt.Printf("%+v", links)
 }
 
