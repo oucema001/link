@@ -24,8 +24,9 @@ func Parse(r io.Reader) ([]Link, error) {
 	if err != nil {
 		fmt.Println(err)
 	}
+
 	dfs(doc, "")
-	return nil, nil
+	return res, nil
 }
 
 func dfs(n *html.Node, padding string) {
