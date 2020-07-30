@@ -11,7 +11,7 @@ import (
 //Link represents a link in an anchor tag
 type Link struct {
 	Href string
-	text string
+	Text string
 }
 
 var r io.Reader
