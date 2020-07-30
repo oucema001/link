@@ -19,7 +19,7 @@ var r io.Reader
 var res []Link
 
 //Parse is used to parse the document and search for anchor tags
-func (l Link) Parse(r io.Reader) ([]Link, error) {
+func Parse(r io.Reader) ([]Link, error) {
 	doc, err := html.Parse(r)
 	if err != nil {
 		fmt.Println(err)
